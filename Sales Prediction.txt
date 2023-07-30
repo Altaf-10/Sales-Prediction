@@ -1,0 +1,122 @@
+Sales Prediction
+________________
+
+
+Link : https://thecleverprogrammer.com/2021/05/19/sales-prediction-with-machine-learning/
+
+
+
+
+Linear Regression Model
+_______________________
+
+-- LR is a Supervised Learning.
+
+-- LR is used to calculate the value of a dependent variable based on one or more independent variables.
+
+-- In LR the dependent variable must be a continuous/real value.
+
+-- The goal of the LR is to find the best linear equation that can predict the value of the dependent variable based on the independent variables.
+
+-- The equation provides a straight line that represents the relationship between the dependent and independent variables.
+
+-- The slope of the line indicates how much the dependent variable changes for a unit change in the independent variables.
+
+
+
+
+
+
+Step-1 : Load the Dataset.
+_______
+
+Link -https://www.kaggle.com/datasets/bumba5341/advertisingcsv
+
+/*
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+sales = pd.read_csv('Advertising.csv')
+*/
+
+
+
+Step-2 : Preprocess the Data.
+______
+
+Check for null or missing values in the Dataset.
+
+/*
+sales.head()
+sales.tail()
+sales.describe()
+sales.isnull().sum()
+sales.info()
+*/
+
+
+
+Step-3 : Visualise the Data.
+______
+
+/*
+plt.figure(figsize=(8,6))
+plt.hist(sales['Sales'], edgecolor='white', label='sales')
+plt.xlabel('Sales')
+plt.ylabel('Frequency of Sales')
+plt.title('Sales Distribution')
+plt.legend()
+plt.show()
+*/
+
+/*
+plt.figure(figsize=(8,5))
+sbn.heatmap(sales.corr(), annot=True, cmap='coolwarm')
+plt.title('Correlation B/w Features')
+plt.show()
+*/
+
+
+
+Step-4 : Split the Data into Training & Testing sets.
+______
+
+/*
+from sklearn.model_selection import train_test_split
+
+sales_feature = np.array(sales.drop('Sales',axis=1))
+sales_target = np.array(sales.Sales)
+x_train,x_test,y_train,y_test = train_test_split(sales_feature, sales_target, test_size=0.2, random_state=28)
+*/
+
+
+
+Step-5 : Train the model. We use Linear Regression ______   Algorithm.
+
+/*
+from sklearn.linear_model import LinearRegression
+LR = LinearRegression()
+LR.fit(x_train,y_train)
+*/
+
+
+
+Step-6 : Make Predictions.
+______
+
+The plot() function is used to visualise data by connection data points with straight lines.
+
+plt.plot(x, y, linestyle, color, marker, label)
+linestyle - sets the line in various types like '-','--','-.','dotted','dashed'.
+
+
+/*
+y_pred = LR.predict(x_test)
+plt.scatter(y_test,y_pred)
+plt.plot(np.linspace(0,300,100),np.linspace(0,300,100),color='orange')
+plt.xlabel('Actual Values')
+plt.ylabel('Predicted Values')
+plt.title('Actual Values vs Predicted Values')
+plt.show()
+*/
